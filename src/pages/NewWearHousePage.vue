@@ -1,4 +1,3 @@
-<!-- TASteps.vue -->
 <template>
   <div class="container mt-4">
 
@@ -14,8 +13,8 @@
         >
           <!-- Step Circle with Icon -->
           <div
-            class="step-circle d-flex align-items-center justify-content-center"
-            :class="getStepClass(index)"
+            class="step-circle d-flex align-items-center justify-content-center text-white"
+            :class="currentStep >= index  ? 'bg-primary opacity-100' : 'bg-secondary opacity-25'"
           >
             <!-- Dynamic Icon based on step -->
             <div class="step-icon" v-html="step.icon"></div>
@@ -24,7 +23,7 @@
           <!-- Step Label -->
           <div class="step-label">
             <p class="step-number" :class="currentStep >= index  ? 'opacity-100' : 'opacity-25'">Step {{ index + 1 }}</p>
-            <p class="step-desc" :class="getLabelClass(index)">{{ step.label }}</p>
+            <p class="step-desc" :class="currentStep >= index  ? 'text-primary opacity-100' : 'text-secondary opacity-25'">{{ step.label }}</p>
           </div>
         </div>
       </div>
@@ -127,34 +126,6 @@ const steps = ref([
   }
 ])
 
-
-const getStepClass = (index) => {
-  const classes = ['step-circle']
-
-  if (index < currentStep.value) {
-    // Completed steps - success color
-    classes.push('step-completed', 'bg-success', 'text-white')
-  } else if (index === currentStep.value) {
-    // Current step - primary color
-    classes.push('step-current', 'bg-primary', 'text-white')
-  } else {
-    // Future steps - secondary color with opacity
-    classes.push('step-future', 'bg-secondary', 'text-white', 'opacity-25')
-  }
-
-  return classes
-}
-
-const getLabelClass = (index) => {
-  if (index < currentStep.value) {
-    return 'text-success fw-semibold'
-  } else if (index === currentStep.value) {
-    return 'text-primary fw-semibold'
-  } else {
-    return 'text-secondary opacity-25'
-  }
-}
-
 const nextStep = () => {
   if (currentStep.value < steps.value.length - 1) {
     currentStep.value++
@@ -250,28 +221,5 @@ const finish = () => {
 
 .step-content {
   padding: 1rem;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .step-element {
-    flex-direction: column;
-    text-align: center;
-    padding: 0.5rem;
-  }
-
-  .step-label {
-    padding-left: 0;
-    padding-top: 0.5rem;
-  }
-
-  .step-desc {
-    font-size: 14px;
-  }
-
-  .step-circle {
-    width: 40px;
-    height: 40px;
-  }
 }
 </style>
