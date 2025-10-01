@@ -23,7 +23,7 @@
           <!-- Step Label -->
           <div class="step-label">
             <p class="step-number" :class="currentStep >= index  ? 'opacity-100' : 'opacity-25'">Step {{ index + 1 }}</p>
-            <p class="step-desc" :class="currentStep >= index  ? 'text-primary opacity-100' : 'text-secondary opacity-25'">{{ step.label }}</p>
+            <p class="step-desc mb-0" :class="currentStep >= index  ? 'text-primary opacity-100' : 'text-secondary opacity-25'">{{ step.label }}</p>
           </div>
         </div>
       </div>
