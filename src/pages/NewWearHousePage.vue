@@ -52,25 +52,27 @@
       </div>
 
       <!-- Navigation Buttons -->
-      <div class="d-flex justify-content-between mt-4">
+      <div class="d-flex justify-content-center gap-3 mt-4">
         <button
-          v-if="currentStep > 0"
-          class="btn btn-outline-secondary"
+          class="btn btn-primary-tonal btn-lg"
           @click="previousStep"
         >
-          Previous
+          {{ currentStep > 0 ? "Previous":"Cancel" }}
         </button>
-        <div></div> <!-- Spacer -->
         <button
           v-if="currentStep < steps.length - 1"
-          class="btn btn-primary"
+          class="btn btn-primary btn-lg w-25"
           @click="nextStep"
         >
           Next
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.4692 5.46967C13.7621 5.17678 14.2369 5.17678 14.5298 5.46967L20.5298 11.4697C20.8227 11.7626 20.8227 12.2374 20.5298 12.5303L14.5298 18.5303C14.2369 18.8232 13.7621 18.8232 13.4692 18.5303C13.1763 18.2374 13.1763 17.7626 13.4692 17.4697L18.1889 12.75H3.99951C3.5853 12.75 3.24951 12.4142 3.24951 12C3.24951 11.5858 3.5853 11.25 3.99951 11.25H18.1889L13.4692 6.53033C13.1763 6.23744 13.1763 5.76256 13.4692 5.46967Z" fill="white"/>
+         </svg>
         </button>
+
         <button
           v-else
-          class="btn btn-success"
+          class="btn btn-success btn-lg"
           @click="finish"
         >
           Finish
